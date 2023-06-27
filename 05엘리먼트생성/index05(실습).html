@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+
+    <!-- 삭제는 없애는게 아니라 안보이게 하는거 > 스타일 디스플레이 -->
+    
+    <h3>할일 목록 만들기</h3>
+
+    <div class="box1">
+        <input type="text" placeholder="이름을 입력하세요" id="name">
+        <button id="namebtn">확인</button>
+    </div>
+    <div>
+        <input type="text" placeholder="당신의 할일을 적으세요" id="task">
+        <button id="taskbtn">확인</button>
+        <ul class="list">
+
+        </ul>
+    </div>
+
+    <script>
+
+        var namebtn = document.getElementById("namebtn");
+        namebtn.onclick = function() {
+
+            var name = document.getElementById("name");
+            var box = document.querySelector(".box1");
+            
+            namebtn.style.display = 'none';
+            name.style.display = 'none';
+            box.innerHTML = name.value+'님 안녕하세요';
+        }
+        
+        var task = document.getElementById("task");
+        var list = document.querySelector(".list");
+        
+        var taskbtn = document.getElementById("taskbtn");
+        taskbtn.onclick = function() {
+
+            var li = document.createElement('li');
+            var del = document.createElement('button');
+            var text = document.createTextNode(task.value);
+            del.innerHTML = 'x';
+
+            li.appendChild(text);
+            li.appendChild(del);
+            list.appendChild(li);
+            
+            console.log(li);
+
+            del.onclick = function() {
+                li.remove();
+            }
+
+        }
+
+
+    </script>
+
+    
+</body>
+</html>
