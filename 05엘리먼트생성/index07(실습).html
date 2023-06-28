@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>할일 목록 만들기</h3>
+
+    <div class="box1">
+        <input type="text" placeholder="이름을 입력하세요" id="name">
+        <button id="namebtn">확인</button>
+    </div>
+    <div>
+        <input type="text" placeholder="당신의 할일을 적으세요" id="task">
+        <button id="taskbtn">확인</button>
+        <ul class="list">
+
+        </ul>
+    </div>
+
+    <script>
+
+        var namebtn = document.getElementById("namebtn");
+        namebtn.onclick = function() {
+
+            var name = document.getElementById("name");
+            var box = document.querySelector(".box1");
+            
+            namebtn.style.display = 'none';
+            name.style.display = 'none';
+            box.innerHTML = name.value+'님 안녕하세요';
+        }
+        
+        var task = document.getElementById("task");
+        var list = document.querySelector(".list");
+        
+        var taskbtn = document.getElementById("taskbtn");
+        taskbtn.onclick = function() {
+
+            var li = document.createElement('li');
+            var del = document.createElement('button');
+            var up = document.createElement('button');
+            var down = document.createElement('button');
+            var text = document.createTextNode(task.value);
+
+            del.innerHTML = 'x';
+            up.innerHTML = '↑';
+            down.innerHTML = '↓';
+
+            li.appendChild(text);
+            li.appendChild(del);
+            li.appendChild(up);
+            li.appendChild(down);
+            list.appendChild(li);
+
+
+            del.onclick = function() {
+                this.parentElement.remove();
+            }
+
+            up.onclick = function() {
+
+                var result = confirm("이동하시겠습니까?");
+
+                if(result) {
+                
+                    var current = this.parentElement; 
+                    var prev = current.previousElementSibling; //이전행
+
+                    if(prev===null) {
+                        alert("가장 처음 행입니다");
+                        return; //함수종료
+                    }
+                                
+                    list.insertBefore(current, prev);
+                    }
+
+                }
+
+            down.onclick = function() {
+
+                var result = confirm("이동하시겠습니까?");
+
+                if(result) {
+                     
+                    var current = this.parentElement; 
+                    var next = current.nextElementSibling; //다음행
+                        
+                    if(next===null) {
+                        alert("가장 마지막 행입니다");
+                        return;
+                    }
+                        
+                     list.insertBefore(next, current); //삽입노드, 기준노드
+                    }
+
+                }
+
+            }
+
+    </script> 
+</body>
+</html>
