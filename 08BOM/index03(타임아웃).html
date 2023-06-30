@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h3 class="stopTimeout">여기를 누르면 경고창이 나오지 않습니다</h3>
+
+    <script>
+        //setInterval 사용방법이 동일함
+      /*   var stop = setTimeout(function() {
+
+            alert('그만자!');
+
+        }, 5000);
+         */
+        var stopTimeout = document.querySelector('.stopTimeout');
+        stopTimeout.onclick = function() {
+
+            clearTimeout(stop);
+            alert('중지 되었습니다~');
+        }
+
+        //익명함수 안에 있는 매개변수에 값 전달하기
+        //즉시 실행되어버림 > 함수를 호출해서 반환을 받겠다
+        //setTimeout(test, 5000, '매개변수'); //3번째 매개변수는 첫번째 함수의 매개변수로 실행됨
+        setTimeout(test('hello'), 5000);
+        
+
+        function test(x) {
+            return function() {
+                alert('이거 타이밍 function이야' + x);
+            }
+        }
+
+
+        
+
+
+    </script>
+
+
+</body>
+</html>
