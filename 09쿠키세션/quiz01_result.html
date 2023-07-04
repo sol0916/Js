@@ -13,7 +13,7 @@
 
     </div>
 
-    <script>
+<!--     <script>
         
         var cartList = document.querySelector(".cartList");
 
@@ -28,6 +28,30 @@
         cartList.appendChild(img);
         cartList.appendChild(img2);
 
+
+    </script> -->
+
+
+    <!-- 선생님 코드 -->
+
+    <script>
+
+        var cartList = document.querySelector(".cartList");
+        var arr = JSON.parse(localStorage.getItem("like"));
+
+        if(arr!=null) { //값이 존재함
+
+            for(var i=0; i<arr.length; i++) {
+                
+                var img = document.createElement("img");                
+                img.src = arr[i] //src
+                img.width = 300; //img는 width 속성을 가지고 있음
+                cartList.appendChild(img);
+            }
+
+        } else { //값이 없음
+            cartList.innerHTML = '최신 정보가 없습니다';
+        }
 
     </script>
 

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        //동기 => 순차적으로 실행
+        //비동기 => 비순차적으로 실행
+        //1, 2, text 순서대로 출력
+
+        /* console.log(1);
+
+        fetch('hi.txt').then(function(response) {
+            response.text().then(function(text) {
+                console.log(text);
+            })
+        })
+
+        console.log(2); */
+
+
+        //2nd
+        //fetch를 사용하면 promise 객체를 반환 (상태를 가지고 있는 객체)
+        //pending = 대기중
+        //fullfiled = 성공
+        //reject = 실패
+
+        //var promise = fetch('hi.txt');
+        //promise.then(콜백) 
+
+        //promise 객체 안에는 then(콜백) 함수를 사용할 수 있습니다.
+        //값이 promise면 무조건 then()을 사용할 수 있음 
+        //then안에는 실행을 해서 돌려 받을 콜백 함수 적기
+        //콜백 = 어떤 값을 불렀을 때 돌려 받기로 약속한 함수
+        //콜백 함수 = 콜했을 때 백 받을 약속된 함수
+        /* fetch('hi.txt').then(xxx)
+
+        //콜백 함수
+        function xxx(response) {
+            console.log(response);
+        } */
+
+
+        //3rd
+        //text()는 body에 있는 데이터를 문자열로 변환 - return : Promise 객체
+        //json()는 body에 있는 데이터를 Object로 변환 - return : Promise 객체
+        /* fetch('hi.txt').then(function(response) {
+            console.log(response.text()); //Promise
+        }) */
+        
+
+        //4nd
+        /* fetch('hi.txt').then(function(response) {
+
+            if(response.status!=200) {
+                alert('통신에 실패했습니다');
+                return;       
+            }
+
+            response.text().then(function(data) {
+                console.log(data);
+            })
+            
+        }); */
+
+
+        fetch('hi.txt')
+        .then(function(response) {
+
+            if(response.status!=200) {
+                console.log('통신에 실패했습니다');
+                return;
+            }
+
+            return response.text(); //이 결과는 fetch함수의 리턴으로 연결
+
+        }).then(function(data) {
+            console.log(1);
+            return data;
+        }).then(function(data) {
+            console.log(data);
+        }).catch(function(e) { //catch는 마지막에 사용. 에러가 나면 catch문장으로 넘어감
+            console.log(e);
+        })
+
+
+
+    </script>    
+
+
+</body>
+</html>
